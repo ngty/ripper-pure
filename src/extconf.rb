@@ -13,7 +13,7 @@ def main
   $cleanfiles.concat %w(ripper.y ripper.c ripper.E ripper.output y.output eventids1.c eventids2table.c)
   $defs << '-DRIPPER'
   $defs << '-DRIPPER_DEBUG' if $debug
-  $VPATH << '$(srcdir)'
+  $VPATH << '$(srcdir)/tools'
   $INCFLAGS << ' -I$(srcdir)'
   create_makefile 'ripper'
 end
