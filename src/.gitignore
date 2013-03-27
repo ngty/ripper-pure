@@ -1,0 +1,9 @@
+Makefile
+eventids1.c
+eventids2table.c
+mkmf.log
+ripper.c
+ripper.o
+ripper.so
+ripper.y
+y.output
