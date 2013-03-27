@@ -8,7 +8,7 @@ BISON = bison
 src: ripper.c eventids1.c eventids2table.c
 
 ripper.o: ripper.c id.c lex.c eventids1.c eventids2.c eventids2table.c \
-	$(srcdir)/ruby.h $(arch_hdrdir)/ruby/config.h \
+	$(srcdir)/ruby.h $(srcdir)/arch/$(arch)/config.h \
 	$(srcdir)/defines.h $(srcdir)/intern.h \
 	$(srcdir)/encoding.h $(srcdir)/missing.h \
 	$(srcdir)/node.h $(srcdir)/oniguruma.h \
