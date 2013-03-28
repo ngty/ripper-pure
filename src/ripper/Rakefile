@@ -1,13 +1,15 @@
 SRC_DIR = File.dirname(__FILE__)
 
-task :build do
+task :clean do
   makefile = File.join(SRC_DIR, 'Makefile')
 
   if File.exists? makefile
     sh 'make clean'
     sh 'rm %s' % makefile
   end
+end
 
+task :build => :clean do
   sh 'ruby extconf.rb'
   sh 'make'
 end
