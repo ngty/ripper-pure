@@ -1,0 +1,13 @@
+task :build do
+  makefile = File.expand_path('../Makefile', __FILE__)
+
+  if File.exists? makefile
+    sh 'make clean'
+    sh 'rm %s' % makefile
+  end
+
+  sh 'ruby extconf.rb'
+  sh 'make'
+end
+
+task :default => :build
