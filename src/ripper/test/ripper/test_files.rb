@@ -10,7 +10,7 @@ rescue LoadError
 end
 
 class TestRipper::Generic < Test::Unit::TestCase
-  SRCDIR = File.dirname(File.dirname(File.dirname(File.expand_path(__FILE__))))
+  SRCDIR = ENV["RUBY_ROOT"]
 
   class Parser < Ripper
     PARSER_EVENTS.each {|n| eval "def on_#{n}(*args) r = [:#{n}, *args]; r.inspect; Object.new end" }
@@ -33,15 +33,28 @@ class TestRipper::Generic < Test::Unit::TestCase
     end
   end
 
-  def test_parse_files
-    Find.find("#{SRCDIR}/lib", "#{SRCDIR}/ext", "#{SRCDIR}/sample", "#{SRCDIR}/test") {|n|
-      next if /\.rb\z/ !~ n || !File.file?(n)
-      next if TEST_RATIO < rand
+  Find.find(SRCDIR) {|n|
+    next if /\.rb\z/ !~ n || !File.file?(n)
+    next if TEST_RATIO < rand
+
+    define_method(:"test_parse_file_#{n.gsub(/\W/,'_')}") do
       assert_nothing_raised("ripper failed to parse: #{n.inspect}") {
-	capture_stderr {
-	  Parser.new(File.read(n)).parse
-	}
+        capture_stderr {
+          Parser.new(File.read(n)).parse
+        }
       }
-    }
-  end
+    end
+  }
+
+  # def test_parse_files
+  #   Find.find(SRCDIR) {|n|
+  #     next if /\.rb\z/ !~ n || !File.file?(n)
+  #     next if TEST_RATIO < rand
+  #     assert_nothing_raised("ripper failed to parse: #{n.inspect}") {
+  #       capture_stderr {
+  #         Parser.new(File.read(n)).parse
+  #       }
+  #     }
+  #   }
+  # end
 end if ripper_test

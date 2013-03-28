@@ -1,4 +1,5 @@
 SRC_DIR = File.dirname(__FILE__)
+ENV['RUBY_ROOT'] ||= File.dirname(File.dirname(`type ruby`))
 
 desc 'Clean the build artifacts (eg. ripper.so)'
 task :clean do
