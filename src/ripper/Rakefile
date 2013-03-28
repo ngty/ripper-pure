@@ -1,5 +1,6 @@
 SRC_DIR = File.dirname(__FILE__)
 
+desc 'Clean the build artifacts (eg. ripper.so)'
 task :clean do
   makefile = File.join(SRC_DIR, 'Makefile')
 
@@ -9,11 +10,13 @@ task :clean do
   end
 end
 
+desc 'Generate ripper.so'
 task :build => :clean do
   sh 'ruby extconf.rb'
   sh 'make'
 end
 
+desc 'Test the generated ripper.so'
 task :test do
   sh 'testrb %s' % Dir[File.join(SRC_DIR, 'test/test_*.rb')].join(' ')
 end
