@@ -2,7 +2,7 @@
 # dummyparser.rb
 #
 
-require 'ripper'
+require File.expand_path('../../lib/ripper', __FILE__)
 
 class Node
   def initialize(name, *nodes)

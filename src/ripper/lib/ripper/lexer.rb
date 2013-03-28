@@ -8,7 +8,7 @@
 # For details of Ruby License, see ruby/COPYING.
 #
 
-require 'ripper/core'
+require File.expand_path('../core', __FILE__)
 
 class Ripper
 

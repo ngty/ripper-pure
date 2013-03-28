@@ -8,7 +8,7 @@
 # For details of Ruby License, see ruby/COPYING.
 #
 
-require 'ripper/lexer'
+require File.expand_path('../lexer', __FILE__)
 
 class Ripper
 

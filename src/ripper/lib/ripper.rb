@@ -1,7 +1,7 @@
-require 'ripper/core'
-require 'ripper/lexer'
-require 'ripper/filter'
-require 'ripper/sexp'
+require File.expand_path('../ripper/core', __FILE__)
+require File.expand_path('../ripper/lexer', __FILE__)
+require File.expand_path('../ripper/filter', __FILE__)
+require File.expand_path('../ripper/sexp', __FILE__)
 
 # Ripper is a Ruby script parser.
 #

@@ -8,7 +8,7 @@
 # For details of Ruby License, see ruby/COPYING.
 #
 
-require 'ripper.so'
+require File.expand_path('../../../ripper.so', __FILE__)
 
 class Ripper
 
