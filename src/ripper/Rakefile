@@ -1,5 +1,7 @@
+SRC_DIR = File.dirname(__FILE__)
+
 task :build do
-  makefile = File.expand_path('../Makefile', __FILE__)
+  makefile = File.join(SRC_DIR, 'Makefile')
 
   if File.exists? makefile
     sh 'make clean'
@@ -10,4 +12,8 @@ task :build do
   sh 'make'
 end
 
-task :default => :build
+task :test do
+  sh 'testrb %s' % Dir[File.join(SRC_DIR, 'test/test_*.rb')].join(' ')
+end
+
+task :default => [:build, :test]
