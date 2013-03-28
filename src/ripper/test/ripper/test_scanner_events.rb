@@ -2,11 +2,12 @@
 # test_scanner_events.rb
 #
 begin
-  require 'ripper'
+  require File.expand_path('../../ripper', __FILE__)
   require 'test/unit'
   ripper_test = true
   module TestRipper; end
 rescue LoadError
+  p $!
 end
 
 class TestRipper::ScannerEvents < Test::Unit::TestCase

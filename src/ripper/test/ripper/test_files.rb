@@ -1,16 +1,16 @@
 begin
-  require 'ripper'
+  require File.expand_path('../../ripper', __FILE__)
   require 'find'
   require 'stringio'
   require 'test/unit'
   ripper_test = true
   module TestRipper; end
 rescue LoadError
+  p $!
 end
 
 class TestRipper::Generic < Test::Unit::TestCase
   SRCDIR = File.dirname(File.dirname(File.dirname(File.expand_path(__FILE__))))
-  puts ['DEBUG', SRCDIR]
 
   class Parser < Ripper
     PARSER_EVENTS.each {|n| eval "def on_#{n}(*args) r = [:#{n}, *args]; r.inspect; Object.new end" }

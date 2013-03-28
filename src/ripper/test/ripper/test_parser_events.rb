@@ -1,10 +1,11 @@
 begin
-  require_relative 'dummyparser'
-  require_relative '../ruby/envutil'
+  require File.expand_path('../dummyparser', __FILE__)
+  require File.expand_path('../../envutil', __FILE__)
   require 'test/unit'
   ripper_test = true
   module TestRipper; end
 rescue LoadError
+  p $!
 end
 
 class TestRipper::ParserEvents < Test::Unit::TestCase

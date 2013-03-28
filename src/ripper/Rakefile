@@ -18,7 +18,7 @@ end
 
 desc 'Test the generated ripper.so'
 task :test do
-  sh 'testrb %s' % Dir[File.join(SRC_DIR, 'test/test_*.rb')].join(' ')
+  sh 'testrb %s' % Dir[File.join(SRC_DIR, 'test/ripper/test_*.rb')].join(' ')
 end
 
 task :default => [:build, :test]
